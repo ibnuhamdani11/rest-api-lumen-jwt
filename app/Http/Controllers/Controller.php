@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\Auth;
   
 class Controller extends BaseController
 {
+    protected $pathDocument   = "assets/";
+    public function __construct()
+    {
+        $this->pathDocument = config('assets.upload');
+    }
+
     public function respondWithToken($token)
     {
         return response()->json([
