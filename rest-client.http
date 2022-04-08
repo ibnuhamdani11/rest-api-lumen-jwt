@@ -1,36 +1,38 @@
-@hostname = http://localhost/rest-api-lumen-jwt/api
+@hostname = http://localhost/rest-api-lumen-jwt/api/v1
 @token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL3Jlc3QtYXBpLWx1bWVuLWp3dFwvYXBpXC9sb2dpbiIsImlhdCI6MTY0OTQyNTM3MywiZXhwIjoxNjQ5NDI4OTczLCJuYmYiOjE2NDk0MjUzNzMsImp0aSI6InNSNTZkZFpGeVdEaTN3dEkiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.EjoD2VD99BET3UVhEYi9sGBr_tVYul56yQS6Q5XDrwI
 
 
 ###### Register
-POST {{hostname}}/register
+POST {{hostname}}/auth/register
 content-type: application/json
 
 {
-    "username" : "ibnu",
-    "password" : "123",
-    "password_confirmation" : "123"
+    "username"              : "hamdani",
+    "password"              : "456",
+    "password_confirmation" : "456",
+    "email"                 : "ibnuhamdani@gmail.com",
+    "country_code"          : "+62",
+    "phone_number"          : "83823134571"
 }
 
 
 ###### Login
-POST {{hostname}}/login
+POST {{hostname}}/auth/login
 content-type: application/json
 
 { 
     "password" : "123",  
-    "username" : "ibnu"
+    "email" : "ibnuhamdani234@gmail.com"
 }
 
 ######
-GET {{hostname}}/me
+GET {{hostname}}/profile
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 ###### Quote
 GET {{hostname}}/quote
-Content-Type: application/json
-# Authorization: Bearer {{token}}
+Content-Type: application/json 
 
 {
     "url" : "https://api.chucknorris.io/jokes/random"

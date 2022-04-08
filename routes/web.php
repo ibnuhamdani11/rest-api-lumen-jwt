@@ -17,17 +17,18 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->group(['middleware' => 'auth','prefix' => 'api'], function ($router) 
+$router->group(['middleware' => 'auth','prefix' => 'api/v1/'], function ($router) 
 {
     // endpoint private
-    $router->get('me', 'AuthController@me');
+    $router->get('profile', 'AuthController@profile');
     $router->post('transaction', 'TransactionController@transaction');
 });
 
-$router->group(['prefix' => 'api'], function () use ($router) 
+$router->group(['prefix' => 'api/v1/auth/'], function () use ($router) 
 {
-    // endpoint public
+    // endpoint auth
    $router->post('register', 'AuthController@register');
    $router->post('login', 'AuthController@login');
-   $router->get('quote', 'QuoteController@read');
 });
+// endpoint public
+$router->get('api/v1/quote', 'QuoteController@read');
