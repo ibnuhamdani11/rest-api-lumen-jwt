@@ -53,6 +53,16 @@ Authorization: Bearer {{token}}
 }
 
 
+###### import csv
+POST {{hostname}}/upload-csv
+Content-Type: multipart/form-data
+Authorization: Bearer {{token}}
+
+{
+    "uploaded_file" : "upload file csv nya"
+}
+
+
 ###### low-high
 POST {{hostname}}/price/low-high
 Content-Type: application/json
@@ -61,6 +71,19 @@ Authorization: Bearer {{token}}
 {
     "month"     : "10",
     "year"      : "2017",
-    "currency"  :"usd",   // idr or usd
+    "currency"  : "usd",
     "ticker"    : "BTC"
+}
+
+
+###### history
+POST {{hostname}}/price/history
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "start_time"    : "2017-10-08 07:00:00",
+    "end_time"      : "2017-10-11 07:00:00",
+    "currency"      : "usd", 
+    "ticker"        : "BTC"
 }

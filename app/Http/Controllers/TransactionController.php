@@ -122,44 +122,75 @@ class TransactionController extends Controller
     }
     public function lowHigh(Request $request){
         $this->validate($request, [
-            'month'      => 'required',
+            'month'     => 'required',
             'year'      => 'required',
             'ticker'    => 'required',
             'currency'  => 'required'
         ]);
-        if($request->currency == 'idr'){
+
+        $month = $request->month;
+        $year = $request->year;
+        $ticker = $request->ticker;
+        $currency = $request->currency;
+
+        if($currency == 'idr'){
             $dataMax = TCoinPrice::select('id', 'name', 'ticker', 'coin_id', 'code', 'exchange', 'invalid', 'record_time', 'idr', 'hnst', 'eth', 'btc', 'created_at', 'updated_at')
-                            ->where('ticker', $request->ticker)
-                            ->whereYear('created_at', $request->year)
-                            ->whereMonth('created_at', $request->month)
-                            ->orderByRaw('idr DESC')
-                            // ->get();
+                            ->where('ticker', $ticker)
+                            ->whereYear('created_at', $year)
+                            ->whereMonth('created_at', $month)
+                            ->orderByRaw('idr DESC') 
                             ->first();
             $dataMin = TCoinPrice::select('id', 'name', 'ticker', 'coin_id', 'code', 'exchange', 'invalid', 'record_time', 'idr', 'hnst', 'eth', 'btc', 'created_at', 'updated_at')
-                            ->where('ticker', $request->ticker)
-                            ->whereYear('created_at', $request->year)
-                            ->whereMonth('created_at', $request->month)
-                            ->orderByRaw('idr ASC')
-                            // ->get();
+                            ->where('ticker', $ticker)
+                            ->whereYear('created_at', $year)
+                            ->whereMonth('created_at', $month)
+                            ->orderByRaw('idr ASC') 
                             ->first();
         }else{
             $dataMax = TCoinPrice::select('id', 'name', 'ticker', 'coin_id', 'code', 'exchange', 'invalid', 'record_time', 'usd', 'hnst', 'eth', 'btc', 'created_at', 'updated_at')
-                            ->where('ticker', $request->ticker)
-                            ->whereYear('created_at', $request->year)
-                            ->whereMonth('created_at', $request->month)
-                            ->orderByRaw('idr DESC')
-                            // ->get();
+                            ->where('ticker', $ticker)
+                            ->whereYear('created_at', $year)
+                            ->whereMonth('created_at', $month)
+                            ->orderByRaw('idr DESC') 
                             ->first();
 
             $dataMin = TCoinPrice::select('id', 'name', 'ticker', 'coin_id', 'code', 'exchange', 'invalid', 'record_time', 'usd', 'hnst', 'eth', 'btc', 'created_at', 'updated_at')
-                            ->where('ticker', $request->ticker)
-                            ->whereYear('created_at', $request->year)
-                            ->whereMonth('created_at', $request->month)
-                            ->orderByRaw('idr DESC')
-                            // ->get();
+                            ->where('ticker', $ticker)
+                            ->whereYear('created_at', $year)
+                            ->whereMonth('created_at', $month)
+                            ->orderByRaw('idr DESC') 
                             ->first();
         }
-        return response()->json(['status'=>'success','data'=> ['min'=>$dataMin, 'max'=> $dataMax, 'month'=> $request->month, 'year' =>$request->year],'code'=>200]);
+        return response()->json(['status'=>'success','data'=> ['min'=>$dataMin, 'max'=> $dataMax, 'month'=> $month, 'year' =>$year],'code'=>200]);
+        
+    }
+
+    public function history(Request $request){
+        $this->validate($request, [
+            'start_time'    => 'required',
+            'end_time'      => 'required',
+            'ticker'        => 'required',
+            'currency'      => 'required'
+        ]);
+
+        $startTime = $request->start_time;
+        $endTime = $request->end_time;
+        $ticker = $request->ticker;
+        $currency = $request->currency;
+
+        if($currency == 'idr'){
+            $data = TCoinPrice::select('id', 'name', 'ticker', 'coin_id', 'code', 'exchange', 'invalid', 'record_time', 'idr', 'hnst', 'eth', 'btc', 'created_at', 'updated_at')
+                            ->where('ticker', $ticker)
+                            ->whereBetween('created_at', [$startTime, $endTime]) 
+                            ->get(); 
+        }else{
+            $data = TCoinPrice::select('id', 'name', 'ticker', 'coin_id', 'code', 'exchange', 'invalid', 'record_time', 'usd', 'hnst', 'eth', 'btc', 'created_at', 'updated_at')
+                            ->where('ticker', $ticker) 
+                            ->whereBetween('created_at', [$startTime, $endTime])  
+                            ->get();
+ 
+        }
+        return response()->json(['status'=>'success','data'=> ['history'=>$data, 'start_time'=> $startTime, 'end_time' =>$endTime],'code'=>200]);
         
     }
 

@@ -24,6 +24,7 @@ $router->group(['middleware' => 'auth','prefix' => 'api/v1/'], function ($router
     $router->post('transaction', 'TransactionController@transaction');
     $router->post('upload-csv', 'TransactionController@importCsv');
     $router->post('price/low-high', 'TransactionController@lowHigh');
+    $router->post('price/history', 'TransactionController@history');
 });
 
 $router->group(['prefix' => 'api/v1/auth/'], function () use ($router) 
