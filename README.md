@@ -5,8 +5,11 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
 [![License](https://img.shields.io/packagist/l/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
 
-## Step instalasi
+## Tahap instalasi
 ### Clonning repo [ini](https://github.com/ibnuhamdani11/rest-api-lumen-jwt)
+bisa dengan command `git clone https://github.com/ibnuhamdani11/rest-api-lumen-jwt name_project`
+atau dengan manual download ke repo tersebut
+
 ### Setup DB
 copy dan ubah `.env.example` menjadi `.env` kemudian isi dengan data seperti dibawah ini
 ```
