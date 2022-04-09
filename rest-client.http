@@ -1,5 +1,6 @@
 @hostname = http://localhost/rest-api-lumen-jwt/api/v1
-@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL3Jlc3QtYXBpLWx1bWVuLWp3dFwvYXBpXC9sb2dpbiIsImlhdCI6MTY0OTQyNTM3MywiZXhwIjoxNjQ5NDI4OTczLCJuYmYiOjE2NDk0MjUzNzMsImp0aSI6InNSNTZkZFpGeVdEaTN3dEkiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.EjoD2VD99BET3UVhEYi9sGBr_tVYul56yQS6Q5XDrwI
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL3Jlc3QtYXBpLWx1bWVuLWp3dFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE2NDk0NzE4NzMsImV4cCI6MTY0OTQ3NTQ3MywibmJmIjoxNjQ5NDcxODczLCJqdGkiOiJwRlJ1M3VRR05UUG1wZUdPIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.3GA4b4bf8FwWwBYCb4SND29dNcgS5TwyfzRdT6EmdgU
+
 
 
 ###### Register
@@ -49,4 +50,17 @@ Authorization: Bearer {{token}}
     "trx_id"    : "d",
     "amount"    : "0.80674223",
     "user_id"   : 1
+}
+
+
+###### low-high
+POST {{hostname}}/price/low-high
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "month"     : "10",
+    "year"      : "2017",
+    "currency"  :"usd",   // idr or usd
+    "ticker"    : "BTC"
 }

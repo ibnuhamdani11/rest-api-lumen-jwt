@@ -120,4 +120,47 @@ class TransactionController extends Controller
             throw new \Exception('Invalid file extension', Response::HTTP_UNSUPPORTED_MEDIA_TYPE); //415 error
         }
     }
+    public function lowHigh(Request $request){
+        $this->validate($request, [
+            'month'      => 'required',
+            'year'      => 'required',
+            'ticker'    => 'required',
+            'currency'  => 'required'
+        ]);
+        if($request->currency == 'idr'){
+            $dataMax = TCoinPrice::select('id', 'name', 'ticker', 'coin_id', 'code', 'exchange', 'invalid', 'record_time', 'idr', 'hnst', 'eth', 'btc', 'created_at', 'updated_at')
+                            ->where('ticker', $request->ticker)
+                            ->whereYear('created_at', $request->year)
+                            ->whereMonth('created_at', $request->month)
+                            ->orderByRaw('idr DESC')
+                            // ->get();
+                            ->first();
+            $dataMin = TCoinPrice::select('id', 'name', 'ticker', 'coin_id', 'code', 'exchange', 'invalid', 'record_time', 'idr', 'hnst', 'eth', 'btc', 'created_at', 'updated_at')
+                            ->where('ticker', $request->ticker)
+                            ->whereYear('created_at', $request->year)
+                            ->whereMonth('created_at', $request->month)
+                            ->orderByRaw('idr ASC')
+                            // ->get();
+                            ->first();
+        }else{
+            $dataMax = TCoinPrice::select('id', 'name', 'ticker', 'coin_id', 'code', 'exchange', 'invalid', 'record_time', 'usd', 'hnst', 'eth', 'btc', 'created_at', 'updated_at')
+                            ->where('ticker', $request->ticker)
+                            ->whereYear('created_at', $request->year)
+                            ->whereMonth('created_at', $request->month)
+                            ->orderByRaw('idr DESC')
+                            // ->get();
+                            ->first();
+
+            $dataMin = TCoinPrice::select('id', 'name', 'ticker', 'coin_id', 'code', 'exchange', 'invalid', 'record_time', 'usd', 'hnst', 'eth', 'btc', 'created_at', 'updated_at')
+                            ->where('ticker', $request->ticker)
+                            ->whereYear('created_at', $request->year)
+                            ->whereMonth('created_at', $request->month)
+                            ->orderByRaw('idr DESC')
+                            // ->get();
+                            ->first();
+        }
+        return response()->json(['status'=>'success','data'=> ['min'=>$dataMin, 'max'=> $dataMax, 'month'=> $request->month, 'year' =>$request->year],'code'=>200]);
+        
+    }
+
 } 
