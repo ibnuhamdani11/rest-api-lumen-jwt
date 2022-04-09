@@ -54,7 +54,7 @@ Authorization: Bearer {{token}}
 
 
 ###### import csv
-POST {{hostname}}/upload-csv
+POST {{hostname}}/price/upload
 Content-Type: multipart/form-data
 Authorization: Bearer {{token}}
 

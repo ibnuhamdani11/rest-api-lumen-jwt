@@ -32,3 +32,19 @@ composer require guzzlehttp/guzzle
 
 ### dokumentasi rest client
 untuk dokumentasi endpoint dan payloadnya bisa lihat di file rest-client.http atau bisa dengan klik [ url ini](https://github.com/ibnuhamdani11/rest-api-lumen-jwt/blob/master/rest-client.http)
+
+#### endpoint `{{hostname}}/price/upload`
+silahkan lihat template CSV ketika akan upload di [url ini](https://github.com/ibnuhamdani11/rest-api-lumen-jwt/blob/master/assets/test%20upload%20-%20Sheet1.csv)
+
+
+### Improvisasi
+ada beberapa hal yang saya ubah/ tambahkan diantaranya :
+1. implementasi jwt token
+2. tambahan endpoint `{{hostname}}/profile`
+3. tambahan untuk `{{hostname}}/price/upload` yaitu create folder `assets` yang digunakan untuk menyimpan file importnya sebagai log
+4. untuk endpoint `{{hostname}}/price/low-high` dan `{{hostname}}/price/history` saya mengganti payload yang awalnya **week** di ubah menjadi **month**
+
+
+
+## Notes
+{{hostname}} = http://localhost/rest-api-lumen-jwt/api/v1
