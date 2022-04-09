@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2022 at 05:15 PM
+-- Generation Time: Apr 09, 2022 at 05:24 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -92,6 +92,40 @@ INSERT INTO `transaction` (`id`, `trx_id`, `user_id`, `amount`, `created_at`, `u
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transaction_coin_price`
+--
+
+CREATE TABLE `transaction_coin_price` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `ticker` varchar(255) NOT NULL,
+  `coin_id` int(11) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `exchange` varchar(255) NOT NULL,
+  `invalid` int(11) NOT NULL,
+  `record_time` bigint(20) NOT NULL,
+  `usd` decimal(24,12) NOT NULL,
+  `idr` decimal(18,8) NOT NULL,
+  `hnst` int(11) NOT NULL,
+  `eth` decimal(25,13) NOT NULL,
+  `btc` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transaction_coin_price`
+--
+
+INSERT INTO `transaction_coin_price` (`id`, `name`, `ticker`, `coin_id`, `code`, `exchange`, `invalid`, `record_time`, `usd`, `idr`, `hnst`, `eth`, `btc`, `created_at`, `updated_at`) VALUES
+(8, 'Bitcoin', 'BTC', 5, 'bitcoin', 'gecko', 0, 1502323200, '3367.905387000000', '44990004.87918732', 0, '11.3482800800000', 1, '2017-10-08 00:00:00', '2017-10-08 00:00:00'),
+(9, 'Bitcoin', 'BTC', 5, 'bitcoin', 'gecko', 0, 1502409600, '3367.905387000000', '44990164.11221212', 0, '11.3482800800000', 1, '2017-10-09 00:00:00', '2017-10-09 00:00:00'),
+(10, 'Bitcoin', 'BTC', 5, 'bitcoin', 'gecko', 0, 1502323200, '3367.905387000000', '44990164.76213212', 0, '11.3482800800000', 1, '2017-10-10 00:00:00', '2017-10-10 00:00:00'),
+(11, 'Bitcoin', 'BTC', 5, 'bitcoin', 'gecko', 0, 1502409600, '3367.905387000000', '44990164.00000000', 0, '11.3482800800000', 1, '2017-10-11 00:00:00', '2017-10-11 00:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -137,6 +171,12 @@ ALTER TABLE `transaction`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `transaction_coin_price`
+--
+ALTER TABLE `transaction_coin_price`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -163,6 +203,12 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `transaction`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `transaction_coin_price`
+--
+ALTER TABLE `transaction_coin_price`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`
