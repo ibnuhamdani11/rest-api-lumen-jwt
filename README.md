@@ -43,8 +43,21 @@ ada beberapa hal yang saya ubah/ tambahkan diantaranya :
 2. tambahan endpoint `{{hostname}}/profile`
 3. tambahan untuk `{{hostname}}/price/upload` yaitu create folder `assets` yang digunakan untuk menyimpan file importnya sebagai log
 4. untuk endpoint `{{hostname}}/price/low-high` dan `{{hostname}}/price/history` saya mengganti payload yang awalnya **week** di ubah menjadi **month**
+5. reponse dari setiap endpoint
 
 
 
 ## Notes
 {{hostname}} = http://localhost/rest-api-lumen-jwt/api/v1
+- [x] 1a POST /api/v1/auth/register
+- [x] 1b POST /api/v1/auth/login
+- [x] 2 GET /api/v1/quote
+- [x] 3 POST /api/v1/transaction
+- [x] 4 POST /api/v1/price/upload
+- [x] 5a POST /api/v1/price/low-high
+- [x] 5b POST /api/v1/price/history
+
+
+## Referensi
+- https://medium.com/technology-hits/how-to-import-a-csv-excel-file-in-laravel-d50f93b98aa4
+- https://www.devcoons.com/getting-started-with-lumen-7-0-x-and-jwt-authentication/
